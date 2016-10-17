@@ -88,6 +88,7 @@
                 }
                 s._carve().init();
                 s._configure()
+                 ._listen()
                  ._draw();
             };
 
@@ -400,7 +401,11 @@
         };
 
         this._listen = function () {
+            this.$c.unbind("mousedown touchstart mousewheel DOMMouseScroll");
+            this.$.unbind("keydown keyup mousewheel DOMMouseScroll");
+
             if (!this.o.readOnly) {
+                this.$.removeAttr("readonly");
                 this.$c
                     .bind(
                         "mousedown",
